@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect, useCallback } from "react"; import GameTracker from "./GameTracker"; import GameTracker from "./GameTracker";
+import { useState, useRef, useEffect, useCallback } from "react"; import GameTracker from "./GameTracker";
 
 const SYSTEM_PROMPT = `You are Claudia, a powerful personal AI agent. You can:
 - Have natural, intelligent conversations
