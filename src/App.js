@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect, useCallback } from "react"; import GameTracker from "./GameTracker";
+import { useState, useRef, useEffect, useCallback } from "react"; import GameTracker from "./GameTracker"; import BaseballBrain from "./BaseballBrain";
 
 const SYSTEM_PROMPT = `You are Claudia, a powerful personal AI agent. You can:
 - Have natural, intelligent conversations
@@ -151,8 +151,7 @@ function Message({ msg, muted, onSpeak }) {
 }
 
 export default function App() {
-  const [view, setView] = useState("chat");
-  const [messages, setMessages] = useState([
+  const [view, setView] = useState("chat"); const [messages, setMessages] = useState([
     { role: "system", content: "— CLAUDIA AGENT ONLINE —" },
     { role: "assistant", content: "Hello, darling. I'm Claudia — your personal AI agent. I can think, plan, search, write code, and analyse anything you throw at me.\n\nWhat do you need done?" }
   ]);
@@ -225,6 +224,7 @@ export default function App() {
   const handleKey = (e) => { if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); send(); } };
 
   if (view === "game") return <GameTracker onBack={() => setView("chat")} />;
+  if (view === "baseball") return <BaseballBrain onBack={() => setView("chat")} />;
 
   const quickPrompts = [
     "Plan my day productively",
@@ -300,7 +300,7 @@ export default function App() {
           </button>
           <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
             <div style={{ width: 7, height: 7, borderRadius: "50%", background: "#00f5c4", animation: "pulse 2s infinite" }} />
-            <span style={{ fontSize: 11, color: "#00f5c4", fontFamily: "Space Mono" }}>ONLINE</span>           <button onClick={() => setView("game")} style={{             background: "rgba(245,158,11,0.1)", border: "1px solid #f59e0b40",             borderRadius: 8, padding: "5px 10px", cursor: "pointer",        color: "#f59e0b", fontSize: 11, fontFamily: "Space Mono",           }}>⚾ GAME</button>
+            <span style={{ fontSize: 11, color: "#00f5c4", fontFamily: "Space Mono" }}>ONLINE</span>           <button onClick={() => setView("game")} style={{             background: "rgba(245,158,11,0.1)", border: "1px solid #f59e0b40",             borderRadius: 8, padding: "5px 10px", cursor: "pointer",        color: "#f59e0b", fontSize: 11, fontFamily: "Space Mono",           }}>⚾ GAME</button>           <button onClick={() => setView("baseball")} style={{             background: "rgba(34,197,94,0.1)", border: "1px solid #22c55e40",             borderRadius: 8, padding: "5px 10px", cursor: "pointer",             color: "#22c55e", fontSize: 11, fontFamily: "Space Mono",           }}>🧠 BRAIN</button>
           </div>
         </div>
       </div>
