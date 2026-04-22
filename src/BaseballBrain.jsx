@@ -41,7 +41,7 @@ async function speak(text) {
 }
 // ─────────────────────────────────────────────────────────────────────────────
 
-const BASEBALL_PROMPT = `You are Claudia, an expert little league baseball analyst and coaching assistant with a warm British personality. You have deep knowledge of:
+const BASEBALL_PROMPT = `You are Honus, an expert little league baseball analyst and coaching assistant with a warm British personality. You have deep knowledge of:
 
 BASEBALL RULES & STRATEGY:
 - All official baseball rules including little league specific rules
@@ -231,7 +231,7 @@ export default function BaseballBrain({ onBack }) {
         <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
           <span style={{ fontSize: 24 }}>🧠⚾</span>
           <div>
-            <div style={{ fontFamily: "Oswald", fontSize: 16, color: "#22c55e", letterSpacing: 2 }}>CLAUDIA'S BASEBALL BRAIN</div>
+            <div style={{ fontFamily: "Oswald", fontSize: 16, color: "#22c55e", letterSpacing: 2 }}>HONUS'S BASEBALL BRAIN</div>
             <div style={{ fontSize: 10, color: "#555", letterSpacing: 1, fontFamily: "Space Mono" }}>LIVE COACHING ASSISTANT</div>
           </div>
         </div>
@@ -274,7 +274,7 @@ export default function BaseballBrain({ onBack }) {
             }}>
               <div style={{ fontSize: 40, marginBottom: 12 }}>📊</div>
               <div style={{ fontFamily: "Oswald", fontSize: 16, marginBottom: 8 }}>NO STATS YET</div>
-              <div style={{ fontSize: 13 }}>Tell Claudia about plays in the chat and she'll automatically track player stats here.</div>
+              <div style={{ fontSize: 13 }}>Tell Honus about plays in the chat and she'll automatically track player stats here.</div>
               <div style={{ fontSize: 12, color: "#444", marginTop: 8 }}>
                 Try: "Tommy hit a double" or "Sarah struck out"
               </div>
@@ -290,7 +290,7 @@ export default function BaseballBrain({ onBack }) {
                 ))}
               </div>
               <div style={{ marginTop: 20, fontSize: 12, color: "#444" }}>
-                Stats are automatically tracked from your chat messages. For full stats, ask Claudia for a game summary.
+                Stats are automatically tracked from your chat messages. For full stats, ask Honus for a game summary.
               </div>
             </div>
           )}

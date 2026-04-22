@@ -41,7 +41,7 @@ async function speak(text) {
 }
 // ─────────────────────────────────────────────────────────────────────────────
 
-const SUPER_PROMPT = `You are Claudia, an expert little league baseball analyst and coaching assistant with a warm British personality.
+const SUPER_PROMPT = `You are Honus, an expert little league baseball analyst and coaching assistant with a warm British personality.
 
 You will receive live game data from GameChanger including plays, scores, and situations. Your job is to:
 
@@ -148,8 +148,8 @@ export default function SuperGameDay({ onBack }) {
   const [lastUpdated, setLastUpdated] = useState(null);
   const [muted, setMuted]           = useState(false);
   const [speaking, setSpeaking]     = useState(false);
-  const [claudiaFeed, setClaudiaFeed] = useState([
-    { type: "claudia", text: "Right then! Paste your GameChanger URL and I'll watch the game for you, darling. I'll announce every play and give you tactical advice in real time! ⚾" }
+  const [honusFeed, setHonusFeed] = useState([
+    { type: "honus", text: "Right then! Paste your GameChanger URL and I'll watch the game for you, darling. I'll announce every play and give you tactical advice in real time! ⚾" }
   ]);
   const [chatInput, setChatInput]   = useState("");
   const [chatLoading, setChatLoading] = useState(false);
@@ -167,7 +167,7 @@ export default function SuperGameDay({ onBack }) {
 
   useEffect(() => {
     feedBottomRef.current?.scrollIntoView({ behavior: "smooth" });
-  }, [claudiaFeed, analyzing]);
+  }, [honusFeed, analyzing]);
 
   const announcePlay = useCallback(async (play, gameContext) => {
     setAnalyzing(true);
@@ -199,9 +199,9 @@ Announce this play and give instant coaching advice!`;
         { role: "user", content: prompt },
         { role: "assistant", content: reply },
       ]);
-      setClaudiaFeed(prev => [...prev,
+      setHonusFeed(prev => [...prev,
         { type: "play", text: play.description, time: play.time },
-        { type: "claudia", text: reply },
+        { type: "honus", text: reply },
       ]);
       if (!muted) {
         setSpeaking(true);
@@ -238,7 +238,7 @@ Announce this play and give instant coaching advice!`;
       } else if (plays.length > 0 && lastPlayCount === 0) {
         // First load — announce game start
         const startMsg = `Game is underway! ${data.awayTeam?.name || "Away"} vs ${data.homeTeam?.name || "Home"}. I'm tracking everything for you, darling! ⚾`;
-        setClaudiaFeed(prev => [...prev, { type: "claudia", text: startMsg }]);
+        setHonusFeed(prev => [...prev, { type: "honus", text: startMsg }]);
         if (!muted) speak(startMsg);
       }
       setLastPlayCount(plays.length);
@@ -264,7 +264,7 @@ Announce this play and give instant coaching advice!`;
     setGameData(null);
     setLastPlayCount(0);
     setGcUrl("");
-    setClaudiaFeed(prev => [...prev, { type: "claudia", text: "Game tracking stopped. Well played today! ⚾" }]);
+    setHonusFeed(prev => [...prev, { type: "honus", text: "Game tracking stopped. Well played today! ⚾" }]);
     if (!muted) speak("Game tracking stopped. Well played today!");
   };
 
@@ -273,7 +273,7 @@ Announce this play and give instant coaching advice!`;
     if (!text || chatLoading) return;
     setChatInput("");
     setChatLoading(true);
-    setClaudiaFeed(prev => [...prev, { type: "user", text }]);
+    setHonusFeed(prev => [...prev, { type: "user", text }]);
 
     const gameContext = gameData ? `Current game: ${gameData.awayTeam?.name} ${gameData.awayTeam?.runs} - ${gameData.homeTeam?.name} ${gameData.homeTeam?.runs}, ${gameData.isTop ? "Top" : "Bot"} ${gameData.inning}, ${gameData.outs} outs.` : "";
 
@@ -292,7 +292,7 @@ Announce this play and give instant coaching advice!`;
       const data = await res.json();
       const reply = data.content?.[0]?.text || "Sorry, couldn't process that.";
       setChatHistory([...newHistory, { role: "assistant", content: reply }]);
-      setClaudiaFeed(prev => [...prev, { type: "claudia", text: reply }]);
+      setHonusFeed(prev => [...prev, { type: "honus", text: reply }]);
       if (!muted) {
         setSpeaking(true);
         const utter = new SpeechSynthesisUtterance(reply.replace(/[*_`#>-]+/g, " ").trim());
@@ -303,7 +303,7 @@ Announce this play and give instant coaching advice!`;
         window.speechSynthesis.speak(utter);
       }
     } catch {
-      setClaudiaFeed(prev => [...prev, { type: "claudia", text: "⚠️ Connection error. Try again." }]);
+      setHonusFeed(prev => [...prev, { type: "honus", text: "⚠️ Connection error. Try again." }]);
     }
     setChatLoading(false);
   };
@@ -326,7 +326,7 @@ Announce this play and give instant coaching advice!`;
     setTracking(true);
     setLastUpdated(new Date());
     const startMsg = "Demo mode! Tigers vs Eagles — bottom of the 3rd, Tigers leading 4-2. I'm on it, darling! ⚾";
-    setClaudiaFeed(prev => [...prev, { type: "claudia", text: startMsg }]);
+    setHonusFeed(prev => [...prev, { type: "honus", text: startMsg }]);
     if (!muted) speak(startMsg);
   };
 
@@ -370,7 +370,7 @@ Announce this play and give instant coaching advice!`;
         }}>← Back</button>
 
         <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-          {/* Claudia avatar with speaking ring */}
+          {/* Honus avatar with speaking ring */}
           <div style={{ position: "relative" }}>
             {speaking && <div style={{
               position: "absolute", inset: -4, borderRadius: "50%",
@@ -385,7 +385,7 @@ Announce this play and give instant coaching advice!`;
           </div>
           <div>
             <div style={{ fontFamily: "Oswald", fontSize: 15, color: "#22c55e", letterSpacing: 2 }}>
-              CLAUDIA · GAME DAY
+              HONUS · GAME DAY
             </div>
             <div style={{ fontSize: 10, color: "#555", fontFamily: "Space Mono" }}>
               {speaking ? "SPEAKING..." : tracking ? "LIVE TRACKING" : "READY"}
@@ -519,9 +519,9 @@ Announce this play and give instant coaching advice!`;
           ))}
         </div>
 
-        {/* Claudia feed */}
+        {/* Honus feed */}
         <div style={{ flex: 1, overflowY: "auto", padding: "12px 16px" }}>
-          {claudiaFeed.map((item, i) => (
+          {honusFeed.map((item, i) => (
             <div key={i} style={{ marginBottom: 12, animation: "fadeUp 0.3s ease" }}>
               {item.type === "play" && (
                 <div style={{
@@ -536,7 +536,7 @@ Announce this play and give instant coaching advice!`;
                   </div>
                 </div>
               )}
-              {item.type === "claudia" && (
+              {item.type === "honus" && (
                 <div style={{ display: "flex", gap: 8, alignItems: "flex-start" }}>
                   <div style={{
                     width: 28, height: 28, borderRadius: "50%", flexShrink: 0,
@@ -604,7 +604,7 @@ Announce this play and give instant coaching advice!`;
                 e.target.style.height = Math.min(e.target.scrollHeight, 80) + "px";
               }}
               onKeyDown={e => { if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); sendChat(); }}}
-              placeholder="Ask Claudia anything about the game..."
+              placeholder="Ask Honus anything about the game..."
               style={{
                 flex: 1, background: "transparent", border: "none",
                 color: "#f0f0f0", fontSize: 14, lineHeight: 1.5,

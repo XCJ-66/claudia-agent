@@ -227,7 +227,7 @@ export default function GameTracker({ onBack }) {
         <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
           <span style={{ fontSize: 22 }}>⚾</span>
           <div>
-            <div style={{ fontFamily: "Oswald", fontSize: 16, color: "#f59e0b", letterSpacing: 2 }}>CLAUDIA GAME TRACKER</div>
+            <div style={{ fontFamily: "Oswald", fontSize: 16, color: "#f59e0b", letterSpacing: 2 }}>HONUS GAME TRACKER</div>
             <div style={{ fontSize: 10, color: "#555", letterSpacing: 1, fontFamily: "Space Mono" }}>LIVE LITTLE LEAGUE STATS</div>
           </div>
         </div>

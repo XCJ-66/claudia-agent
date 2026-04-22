@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect, useCallback } from "react"; import GameTracker from "./GameTracker"; import BaseballBrain from "./BaseballBrain"; import SuperGameDay from "./SuperGameDay";
 
-const SYSTEM_PROMPT = `You are Claudia, a powerful personal AI agent. You can:
+const SYSTEM_PROMPT = `You are Honus, a powerful personal AI agent. You can:
 - Have natural, intelligent conversations
 - Help plan and break down complex tasks into steps
 - Analyze problems and provide structured solutions
@@ -152,8 +152,8 @@ function Message({ msg, muted, onSpeak }) {
 
 export default function App() {
   const [view, setView] = useState("chat"); const [messages, setMessages] = useState([
-    { role: "system", content: "— CLAUDIA AGENT ONLINE —" },
-    { role: "assistant", content: "Hello, darling. I'm Claudia — your personal AI agent. I can think, plan, search, write code, and analyse anything you throw at me.\n\nWhat do you need done?" }
+    { role: "system", content: "— HONUS AGENT ONLINE —" },
+    { role: "assistant", content: "Hello, darling. I'm Honus — your personal baseball AI agent. I can think, plan, search, write code, and analyse anything you throw at me.\n\nWhat do you need done?" }
   ]);
   const [history, setHistory]       = useState([]);
   const [input, setInput]           = useState("");
@@ -274,7 +274,7 @@ export default function App() {
         </div>
 
         <div>
-          <div style={{ fontFamily: "Space Mono", fontSize: 13, color: "#00f5c4", letterSpacing: 2 }}>CLAUDIA</div>
+          <div style={{ fontFamily: "Space Mono", fontSize: 13, color: "#00f5c4", letterSpacing: 2 }}>HONUS</div>
           <div style={{ fontSize: 11, color: speaking ? "#00f5c4" : "#555", letterSpacing: 1, transition: "color 0.3s" }}>
             {speaking ? "SPEAKING..." : "YOUR PERSONAL AI AGENT"}
           </div>
@@ -386,7 +386,7 @@ export default function App() {
             onKeyDown={handleKey}
             placeholder={activeTool
               ? `What should I ${TOOLS.find(t => t.id === activeTool)?.desc.toLowerCase()}?`
-              : "Ask Claudia anything or give her a task..."}
+              : "Ask Honus anything or give her a task..."}
             style={{
               flex: 1, background: "transparent", border: "none",
               color: "#f0f0f0", fontSize: 14, lineHeight: 1.5,
@@ -405,7 +405,7 @@ export default function App() {
           }}>➤</button>
         </div>
         <div style={{ fontSize: 11, color: "#333", textAlign: "center", marginTop: 8 }}>
-          Enter to send · Shift+Enter for new line · Select a tool to guide Claudia's mode
+          Enter to send · Shift+Enter for new line · Select a tool to guide Honus's mode
         </div>
       </div>
     </div>
