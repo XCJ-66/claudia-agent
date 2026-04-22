@@ -343,7 +343,41 @@ Announce this play and give instant coaching advice!`;
 
   useEffect(() => () => clearInterval(intervalRef.current), []);
 
-  const quickAsks = [
+  `const downloadReport = async () => {
+const res = await fetch("/api/game-report", {
+method: "POST",
+headers: { "Content-Type": "application/json" },
+body: JSON.stringify({
+gameData, plays,
+teamName: gameData?.homeTeam?.name,
+opponentName: gameData?.awayTeam?.name,
+gameDate: new Date().toLocaleDateString(),
+}),
+});
+const blob = await res.blob();
+const url = URL.createObjectURL(blob);
+const a = document.createElement("a");
+a.href = url;
+a.download = "Honus_Game_Report.csv";
+a.click();
+};
+const emailReport = async () => {
+const res = await fetch("/api/email-report", {
+method: "POST",
+headers: { "Content-Type": "application/json" },
+body: JSON.stringify({
+gameData, plays,
+email: "jcx7816@gmail.com",
+teamName: gameData?.homeTeam?.name,
+opponentName: gameData?.awayTeam?.name,
+gameDate: new Date().toLocaleDateString(),
+}),
+});
+const data = await res.json();
+const mailto = mailto:jcx7816@gmail.com?subject=${encodeURIComponent(data.subject)}&body=${encodeURIComponent(data.emailBody)};
+window.open(mailto);
+};
+const quickAsks = [`
     "Should I steal with runner on first?",
     "Pitching change advice?",
     "Best bunt situation now?",
@@ -511,7 +545,21 @@ Announce this play and give instant coaching advice!`;
           </div>
         )}
 
-        {/* Quick asks */}
+        `{/* Post Game Report buttons */}
+{gameData && (
+<div style={{ padding: "8px 16px", display: "flex", gap: 8, borderBottom: "1px solid rgba(255,255,255,0.04)" }}>
+<button onClick={downloadReport} style={{
+background: "rgba(34,197,94,0.1)", border: "1px solid #22c55e40",
+borderRadius: 8, padding: "7px 14px", cursor: "pointer",
+color: "#22c55e", fontSize: 11, fontFamily: "Space Mono",
+}}>📊 DOWNLOAD REPORT</button>
+<button onClick={emailReport} style={{
+background: "rgba(96,165,250,0.1)", border: "1px solid #60a5fa40",
+borderRadius: 8, padding: "7px 14px", cursor: "pointer",
+color: "#60a5fa", fontSize: 11, fontFamily: "Space Mono",
+}}>📧 EMAIL REPORT</button>
+</div>
+)}
         <div style={{
           padding: "8px 16px", display: "flex", gap: 6, overflowX: "auto",
           borderBottom: "1px solid rgba(255,255,255,0.04)",
