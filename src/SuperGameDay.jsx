@@ -343,12 +343,12 @@ Announce this play and give instant coaching advice!`;
 
   useEffect(() => () => clearInterval(intervalRef.current), []);
 
-  `const downloadReport = async () => {
+  const downloadReport = async () => {
 const res = await fetch("/api/game-report", {
 method: "POST",
 headers: { "Content-Type": "application/json" },
 body: JSON.stringify({
-gameData, plays,
+gameData, plays: gameData?.plays || [],
 teamName: gameData?.homeTeam?.name,
 opponentName: gameData?.awayTeam?.name,
 gameDate: new Date().toLocaleDateString(),
@@ -361,12 +361,12 @@ a.href = url;
 a.download = "Honus_Game_Report.csv";
 a.click();
 };
-const emailReport = async () => {
+  const emailReport = async () => {
 const res = await fetch("/api/email-report", {
 method: "POST",
 headers: { "Content-Type": "application/json" },
 body: JSON.stringify({
-gameData, plays,
+gameData, plays: gameData?.plays || [],
 email: "jcx7816@gmail.com",
 teamName: gameData?.homeTeam?.name,
 opponentName: gameData?.awayTeam?.name,
@@ -374,10 +374,10 @@ gameDate: new Date().toLocaleDateString(),
 }),
 });
 const data = await res.json();
-const mailto = mailto:jcx7816@gmail.com?subject=${encodeURIComponent(data.subject)}&body=${encodeURIComponent(data.emailBody)};
+const mailto = `mailto:jcx7816@gmail.com?subject=${encodeURIComponent(data.subject)}&body=${encodeURIComponent(data.emailBody)}`;
 window.open(mailto);
 };
-const quickAsks = [`
+const quickAsks = [
     "Should I steal with runner on first?",
     "Pitching change advice?",
     "Best bunt situation now?",
