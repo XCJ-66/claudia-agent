@@ -1,23 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 
 // ── British TTS ──────────────────────────────────────────────────────────────
-function getBritishVoice() {
-  const voices = window.speechSynthesis.getVoices();
-  // Prefer deep male voices for 1920s announcer feel
-  const preferred = [
-    "Google US English",
-    "Microsoft David Desktop - English (United States)",
-    "Microsoft Mark Online (Natural) - English (United States)",
-    "Alex",
-    "Daniel",
-    "Fred",
-  ];
-  for (const name of preferred) {
-    const v = voices.find(v => v.name === name);
-    if (v) return v;
-  }
-  return voices.find(v => v.lang === "en-US") || voices.find(v => v.lang.startsWith("en")) || null;
-}
 async function speak(text) {
   window.speechSynthesis.cancel();
   const clean = text.replace(/[*_`#>-]+/g, " ").replace(/\s+/g, " ").trim();
