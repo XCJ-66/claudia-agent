@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 
 // ── British TTS ──────────────────────────────────────────────────────────────
-async function speak(text) {
+async function speak(text, onStart, onEnd) {
   window.speechSynthesis.cancel();
   const clean = text.replace(/[*_`#>-]+/g, " ").replace(/\s+/g, " ").trim();
   try {
@@ -14,9 +14,20 @@ async function speak(text) {
     const blob = await res.blob();
     const url  = URL.createObjectURL(blob);
     const audio = new Audio(url);
-    audio.play();
+    audio.volume = 1.0;
+    if (onStart) audio.onplay = onStart;
+    if (onEnd) audio.onended = onEnd;
+    const playPromise = audio.play();
+    if (playPromise !== undefined) {
+      playPromise.catch(err => {
+        console.log("Audio play failed:", err);
+        const utter = new SpeechSynthesisUtterance(clean);
+        utter.rate = 0.85; utter.pitch = 0.7;
+        window.speechSynthesis.speak(utter);
+      });
+    }
   } catch (err) {
-    // Fallback to browser voice
+    console.log("TTS fetch failed:", err);
     const utter = new SpeechSynthesisUtterance(clean);
     utter.rate = 0.85; utter.pitch = 0.7;
     window.speechSynthesis.speak(utter);
