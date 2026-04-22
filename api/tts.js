@@ -5,7 +5,7 @@ export default async function handler(req, res) {
   if (!text) return res.status(400).json({ error: "No text provided" });
 
   const VOICE_ID = "nKBk408eGyaoUdu1r3xr";
-  const API_KEY  = process.env.ELEVENLABS_API_KEY;
+  const API_KEY  = "sk_ba165abb7b23965214694b60e3213901d50549c444139db9";
 
   try {
     const response = await fetch(
