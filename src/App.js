@@ -37,19 +37,33 @@ function getBritishVoice() {
   return voices.find(v => v.lang.startsWith("en")) || null;
 }
 
-function speak(text, onStart, onEnd) {
+async function speak(text, onStart, onEnd) {
   window.speechSynthesis.cancel();
   const clean = text.replace(/[*_`#>-]+/g, " ").replace(/\s+/g, " ").trim();
-  const utter = new SpeechSynthesisUtterance(clean);
-  const voice = getBritishVoice();
-  if (voice) utter.voice = voice;
-  utter.lang = "en-US";
-  utter.rate = 0.85;
-  utter.pitch = 0.7;
-  utter.onstart = onStart;
-  utter.onend = onEnd;
-  utter.onerror = onEnd;
-  window.speechSynthesis.speak(utter);
+  try {
+    const res = await fetch("/api/tts", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ text: clean }),
+    });
+    if (!res.ok) throw new Error("TTS failed");
+    const blob = await res.blob();
+    const url = URL.createObjectURL(blob);
+    const audio = new Audio(url);
+    audio.volume = 1.0;
+    if (onStart) audio.onplay = onStart;
+    if (onEnd) audio.onended = onEnd;
+    audio.play().catch(err => {
+      console.log("Audio play failed:", err);
+    });
+  } catch (err) {
+    console.log("TTS error:", err);
+    const utter = new SpeechSynthesisUtterance(clean);
+    utter.rate = 0.85; utter.pitch = 0.7;
+    if (onStart) utter.onstart = onStart;
+    if (onEnd) utter.onend = onEnd;
+    window.speechSynthesis.speak(utter);
+  }
 }
 
 function TypingDots() {
