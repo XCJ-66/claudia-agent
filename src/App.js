@@ -43,9 +43,9 @@ function speak(text, onStart, onEnd) {
   const utter = new SpeechSynthesisUtterance(clean);
   const voice = getBritishVoice();
   if (voice) utter.voice = voice;
-  utter.lang = "en-GB";
-  utter.rate = 1.05;
-  utter.pitch = 1.1;
+  utter.lang = "en-US";
+  utter.rate = 0.85;
+  utter.pitch = 0.7;
   utter.onstart = onStart;
   utter.onend = onEnd;
   utter.onerror = onEnd;

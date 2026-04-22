@@ -21,9 +21,9 @@ function speak(text) {
   const utter = new SpeechSynthesisUtterance(text);
   const voice = getBritishVoice();
   if (voice) utter.voice = voice;
-  utter.lang = "en-GB";
-  utter.rate = 1.0;
-  utter.pitch = 1.1;
+  utter.lang = "en-US";
+  utter.rate = 0.85;
+  utter.pitch = 0.7;
   window.speechSynthesis.speak(utter);
 }
 // ─────────────────────────────────────────────────────────────────────────────

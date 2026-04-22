@@ -3,16 +3,20 @@ import { useState, useRef, useEffect } from "react";
 // ── British TTS ──────────────────────────────────────────────────────────────
 function getBritishVoice() {
   const voices = window.speechSynthesis.getVoices();
+  // Prefer deep male voices for 1920s announcer feel
   const preferred = [
-    "Google UK English Female",
-    "Microsoft Libby Online (Natural) - English (United Kingdom)",
-    "Karen", "Daniel",
+    "Google US English",
+    "Microsoft David Desktop - English (United States)",
+    "Microsoft Mark Online (Natural) - English (United States)",
+    "Alex",
+    "Daniel",
+    "Fred",
   ];
   for (const name of preferred) {
     const v = voices.find(v => v.name === name);
     if (v) return v;
   }
-  return voices.find(v => v.lang === "en-GB") || voices.find(v => v.lang.startsWith("en")) || null;
+  return voices.find(v => v.lang === "en-US") || voices.find(v => v.lang.startsWith("en")) || null;
 }
 function speak(text) {
   window.speechSynthesis.cancel();
@@ -20,7 +24,7 @@ function speak(text) {
   const utter = new SpeechSynthesisUtterance(clean);
   const voice = getBritishVoice();
   if (voice) utter.voice = voice;
-  utter.lang = "en-GB"; utter.rate = 1.05; utter.pitch = 1.1;
+  utter.lang = "en-US"; utter.rate = 0.85; utter.pitch = 0.7;
   window.speechSynthesis.speak(utter);
 }
 // ─────────────────────────────────────────────────────────────────────────────
@@ -53,7 +57,7 @@ PLAY TRACKING:
 
 PERSONALITY:
 - Warm, encouraging, knowledgeable
-- British expressions like "brilliant!", "well done!", "crikey!", "splendid!"
+- Use 1920s baseball announcer expressions like "What a crack of the bat!", "He rounds the bases!", "The crowd goes wild!", "Great day in the morning!"
 - You speak like a proper baseball-loving British woman who knows her stuff
 - Concise responses during games, more detailed when asked for analysis
 
