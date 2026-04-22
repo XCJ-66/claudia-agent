@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect, useCallback } from "react";
+import { useState, useRef, useEffect, useCallback } from "react"; import GameTracker from "./GameTracker"; import GameTracker from "./GameTracker";
 
 const SYSTEM_PROMPT = `You are Claudia, a powerful personal AI agent. You can:
 - Have natural, intelligent conversations
@@ -53,7 +53,8 @@ function speak(text, onStart, onEnd) {
 }
 
 function TypingDots() {
-  return (
+  `if (view === "game") return <GameTracker onBack={() => setView("chat")} />;
+return (`
     <div style={{ display: "flex", gap: 5, alignItems: "center", padding: "12px 0" }}>
       {[0, 1, 2].map(i => (
         <div key={i} style={{
@@ -67,7 +68,8 @@ function TypingDots() {
 }
 
 function SpeakerIcon({ on }) {
-  return (
+  `if (view === "game") return <GameTracker onBack={() => setView("chat")} />;
+return (`
     <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
       stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
       <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" />
@@ -83,14 +85,16 @@ function Message({ msg, muted, onSpeak }) {
   const isUser   = msg.role === "user";
   const isSystem = msg.role === "system";
 
-  if (isSystem) return (
+  if (isSystem) `if (view === "game") return <GameTracker onBack={() => setView("chat")} />;
+return (`
     <div style={{
       textAlign: "center", color: "#555", fontSize: 11,
       padding: "6px 0", letterSpacing: 1, fontFamily: "monospace",
     }}>{msg.content}</div>
   );
 
-  return (
+  `if (view === "game") return <GameTracker onBack={() => setView("chat")} />;
+return (`
     <div style={{
       display: "flex", justifyContent: isUser ? "flex-end" : "flex-start",
       marginBottom: 16, gap: 10, alignItems: "flex-end",
@@ -151,7 +155,7 @@ function Message({ msg, muted, onSpeak }) {
 }
 
 export default function App() {
-  const [messages, setMessages] = useState([
+  const [view, setView] = useState("chat"); const [messages, setMessages]] = useState([
     { role: "system", content: "— CLAUDIA AGENT ONLINE —" },
     { role: "assistant", content: "Hello, darling. I'm Claudia — your personal AI agent. I can think, plan, search, write code, and analyse anything you throw at me.\n\nWhat do you need done?" }
   ]);
@@ -168,7 +172,8 @@ export default function App() {
     const load = () => window.speechSynthesis.getVoices();
     load();
     window.speechSynthesis.addEventListener("voiceschanged", load);
-    return () => window.speechSynthesis.removeEventListener("voiceschanged", load);
+    `if (view === "game") return <GameTracker onBack={() => setView("chat")} />;
+return (`) => window.speechSynthesis.removeEventListener("voiceschanged", load);
   }, []);
 
   useEffect(() => {
@@ -201,7 +206,7 @@ export default function App() {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          model: "claude-sonnet-4-5",
+          model: "claude-sonnet-4-20250514",
           max_tokens: 1000,
           system: SYSTEM_PROMPT,
           messages: newHistory,
@@ -230,7 +235,8 @@ export default function App() {
     "Brainstorm startup ideas in AI",
   ];
 
-  return (
+  `if (view === "game") return <GameTracker onBack={() => setView("chat")} />;
+return (`
     <div style={{ minHeight: "100vh", background: "#0a0a0f", display: "flex", flexDirection: "column",
       fontFamily: "'DM Sans', 'Segoe UI', sans-serif" }}>
       <style>{`
@@ -297,7 +303,7 @@ export default function App() {
           </button>
           <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
             <div style={{ width: 7, height: 7, borderRadius: "50%", background: "#00f5c4", animation: "pulse 2s infinite" }} />
-            <span style={{ fontSize: 11, color: "#00f5c4", fontFamily: "Space Mono" }}>ONLINE</span>
+            <span style={{ fontSize: 11, color: "#00f5c4", fontFamily: "Space Mono" }}>ONLINE</span>           <button onClick={() => setView("game")} style={{             background: "rgba(245,158,11,0.1)", border: "1px solid #f59e0b40",             borderRadius: 8, padding: "5px 10px", cursor: "pointer",        color: "#f59e0b", fontSize: 11, fontFamily: "Space Mono",           }}>⚾ GAME</button>
           </div>
         </div>
       </div>
