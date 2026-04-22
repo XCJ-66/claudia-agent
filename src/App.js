@@ -53,8 +53,7 @@ function speak(text, onStart, onEnd) {
 }
 
 function TypingDots() {
-  `if (view === "game") return <GameTracker onBack={() => setView("chat")} />;
-return (`
+  return (
     <div style={{ display: "flex", gap: 5, alignItems: "center", padding: "12px 0" }}>
       {[0, 1, 2].map(i => (
         <div key={i} style={{
@@ -68,8 +67,7 @@ return (`
 }
 
 function SpeakerIcon({ on }) {
-  `if (view === "game") return <GameTracker onBack={() => setView("chat")} />;
-return (`
+  return (
     <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
       stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
       <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" />
@@ -85,16 +83,14 @@ function Message({ msg, muted, onSpeak }) {
   const isUser   = msg.role === "user";
   const isSystem = msg.role === "system";
 
-  if (isSystem) `if (view === "game") return <GameTracker onBack={() => setView("chat")} />;
-return (`
+  if (isSystem) return (
     <div style={{
       textAlign: "center", color: "#555", fontSize: 11,
       padding: "6px 0", letterSpacing: 1, fontFamily: "monospace",
     }}>{msg.content}</div>
   );
 
-  `if (view === "game") return <GameTracker onBack={() => setView("chat")} />;
-return (`
+  return (
     <div style={{
       display: "flex", justifyContent: isUser ? "flex-end" : "flex-start",
       marginBottom: 16, gap: 10, alignItems: "flex-end",
@@ -155,7 +151,7 @@ return (`
 }
 
 export default function App() {
-  const [view, setView] = useState("chat"); const [messages, setMessages]] = useState([
+  const [view, setView] = useState("chat"); const [messages, setMessages] = useState([
     { role: "system", content: "— CLAUDIA AGENT ONLINE —" },
     { role: "assistant", content: "Hello, darling. I'm Claudia — your personal AI agent. I can think, plan, search, write code, and analyse anything you throw at me.\n\nWhat do you need done?" }
   ]);
@@ -172,8 +168,7 @@ export default function App() {
     const load = () => window.speechSynthesis.getVoices();
     load();
     window.speechSynthesis.addEventListener("voiceschanged", load);
-    `if (view === "game") return <GameTracker onBack={() => setView("chat")} />;
-return (`) => window.speechSynthesis.removeEventListener("voiceschanged", load);
+    return () => window.speechSynthesis.removeEventListener("voiceschanged", load);
   }, []);
 
   useEffect(() => {
@@ -235,8 +230,7 @@ return (`) => window.speechSynthesis.removeEventListener("voiceschanged", load);
     "Brainstorm startup ideas in AI",
   ];
 
-  `if (view === "game") return <GameTracker onBack={() => setView("chat")} />;
-return (`
+  return (
     <div style={{ minHeight: "100vh", background: "#0a0a0f", display: "flex", flexDirection: "column",
       fontFamily: "'DM Sans', 'Segoe UI', sans-serif" }}>
       <style>{`
