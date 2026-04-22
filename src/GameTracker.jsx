@@ -28,7 +28,7 @@ function speak(text) {
 }
 // ─────────────────────────────────────────────────────────────────────────────
 
-const REFRESH_INTERVAL = 30000; // 30 seconds
+const REFRESH_INTERVAL = 15000; // 30 seconds
 
 function Diamond({ bases }) {
   // bases = { first, second, third }

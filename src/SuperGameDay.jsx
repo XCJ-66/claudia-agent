@@ -71,7 +71,7 @@ When given a play update, respond in this format:
 - Second line: Quick tactical insight or next move suggestion
 - Keep it under 3 sentences total`;
 
-const REFRESH_INTERVAL = 30000;
+const REFRESH_INTERVAL = 15000;
 
 function Diamond({ bases }) {
   const active = "#f59e0b";
