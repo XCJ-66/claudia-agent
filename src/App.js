@@ -19,23 +19,6 @@ const TOOLS = [
   { id: "analyze", icon: "📊", label: "Analyze",    desc: "Data & insights" },
 ];
 
-function getBritishVoice() {
-  const voices = window.speechSynthesis.getVoices();
-  const preferred = [
-    "Google UK English Female",
-    "Microsoft Libby Online (Natural) - English (United Kingdom)",
-    "Microsoft Mia Online (Natural) - English (United Kingdom)",
-    "Karen",
-    "Daniel",
-  ];
-  for (const name of preferred) {
-    const v = voices.find(v => v.name === name);
-    if (v) return v;
-  }
-  const gbVoice = voices.find(v => v.lang === "en-GB");
-  if (gbVoice) return gbVoice;
-  return voices.find(v => v.lang.startsWith("en")) || null;
-}
 
 async function speak(text, onStart, onEnd) {
   window.speechSynthesis.cancel();
