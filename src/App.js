@@ -39,7 +39,7 @@ function getBritishVoice() {
 
 function speak(text, onStart, onEnd) {
   window.speechSynthesis.cancel();
-  const clean = text.replace(/[*_`#>\-]+/g, " ").replace(/\s+/g, " ").trim();
+  const clean = text.replace(/[*_`#>-]+/g, " ").replace(/\s+/g, " ").trim();
   const utter = new SpeechSynthesisUtterance(clean);
   const voice = getBritishVoice();
   if (voice) utter.voice = voice;
