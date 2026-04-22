@@ -151,7 +151,8 @@ function Message({ msg, muted, onSpeak }) {
 }
 
 export default function App() {
-  const [view, setView] = useState("chat"); const [messages, setMessages] = useState([
+  const [view, setView] = useState("chat");
+  const [messages, setMessages] = useState([
     { role: "system", content: "— CLAUDIA AGENT ONLINE —" },
     { role: "assistant", content: "Hello, darling. I'm Claudia — your personal AI agent. I can think, plan, search, write code, and analyse anything you throw at me.\n\nWhat do you need done?" }
   ]);
@@ -222,6 +223,8 @@ export default function App() {
   };
 
   const handleKey = (e) => { if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); send(); } };
+
+  if (view === "game") return <GameTracker onBack={() => setView("chat")} />;
 
   const quickPrompts = [
     "Plan my day productively",
