@@ -18,14 +18,26 @@ function getBritishVoice() {
   }
   return voices.find(v => v.lang === "en-US") || voices.find(v => v.lang.startsWith("en")) || null;
 }
-function speak(text) {
+async function speak(text) {
   window.speechSynthesis.cancel();
   const clean = text.replace(/[*_`#>-]+/g, " ").replace(/\s+/g, " ").trim();
-  const utter = new SpeechSynthesisUtterance(clean);
-  const voice = getBritishVoice();
-  if (voice) utter.voice = voice;
-  utter.lang = "en-US"; utter.rate = 0.85; utter.pitch = 0.7;
-  window.speechSynthesis.speak(utter);
+  try {
+    const res = await fetch("/api/tts", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ text: clean }),
+    });
+    if (!res.ok) throw new Error("TTS failed");
+    const blob = await res.blob();
+    const url  = URL.createObjectURL(blob);
+    const audio = new Audio(url);
+    audio.play();
+  } catch (err) {
+    // Fallback to browser voice
+    const utter = new SpeechSynthesisUtterance(clean);
+    utter.rate = 0.85; utter.pitch = 0.7;
+    window.speechSynthesis.speak(utter);
+  }
 }
 // ─────────────────────────────────────────────────────────────────────────────
 
