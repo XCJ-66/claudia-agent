@@ -1,20 +1,6 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 
 // ── British TTS ──────────────────────────────────────────────────────────────
-function getBritishVoice() {
-  const voices = window.speechSynthesis.getVoices();
-  const preferred = [
-    "Google UK English Female",
-    "Microsoft Libby Online (Natural) - English (United Kingdom)",
-    "Microsoft Mia Online (Natural) - English (United Kingdom)",
-    "Karen", "Daniel",
-  ];
-  for (const name of preferred) {
-    const v = voices.find(v => v.name === name);
-    if (v) return v;
-  }
-  return voices.find(v => v.lang === "en-GB") || voices.find(v => v.lang.startsWith("en")) || null;
-}
 
 async function speak(text) {
   window.speechSynthesis.cancel();
