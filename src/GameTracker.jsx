@@ -16,11 +16,21 @@ function getBritishVoice() {
   return voices.find(v => v.lang === "en-GB") || voices.find(v => v.lang.startsWith("en")) || null;
 }
 
-async function speak(text) {
+async async function speak(text) {
   window.speechSynthesis.cancel();
-  const utter = new SpeechSynthesisUtterance(text);
-  const voice = getBritishVoice();
-  if (voice) utter.voice = voice;
+  const clean = text.replace(/[*_`#>-]+/g, " ").replace(/\s+/g, " ").trim();
+  try {
+    const res = await fetch("/api/tts-brian", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ text: clean }) });
+    if (!res.ok) throw new Error("TTS failed");
+    const blob = await res.blob();
+    const url = URL.createObjectURL(blob);
+    const audio = document.getElementById("honus-audio") || Object.assign(document.createElement("audio"), {id: "honus-audio"});
+    document.body.contains(audio) || document.body.appendChild(audio);
+    audio.src = url;
+    audio.play().catch(e => console.log(e));
+    return;
+  } catch(err) { console.log(err); }
+  const utter = new SpeechSynthesisUtterance(clean);
   utter.lang = "en-US";
   utter.rate = 0.85;
   utter.pitch = 0.7;
