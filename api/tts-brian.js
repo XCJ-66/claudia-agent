@@ -4,7 +4,7 @@ export default async function handler(req, res) {
   const { text } = req.body;
   if (!text) return res.status(400).json({ error: "No text provided" });
 
-  const VOICE_ID = "nPczCjzI2devNBz1zQrb";
+  const VOICE_ID = "cjVigY5qzO86Huf0OWal";
   const API_KEY  = "sk_ba165abb7b23965214694b60e3213901d50549c444139db9";
 
   try {
