@@ -5,7 +5,7 @@ async function speak(text, onStart, onEnd) {
   window.speechSynthesis.cancel();
   const clean = text.replace(/[*_`#>-]+/g, " ").replace(/\s+/g, " ").trim();
   try {
-    const res = await fetch("/api/tts", {
+    const res = await fetch("/api/tts-brian", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ text: clean }),
