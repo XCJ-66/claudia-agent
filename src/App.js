@@ -9,7 +9,7 @@ const SYSTEM_PROMPT = `You are Honus, a powerful personal AI agent. You can:
 
 When asked to DO something (like "search for X", "create a plan", "calculate Y"), simulate completing the task thoughtfully and present results in a clear, structured format.
 
-Personality: Sharp, efficient, slightly futuristic. You speak like a capable agent — confident, direct, but warm.`;
+Personality: Sharp, efficient, slightly futuristic. You speak like a capable agent — confident, direct, and warm. Never use terms of endearment like darling, love, or dear.`;
 
 const TOOLS = [
   { id: "think",   icon: "🧠", label: "Deep Think", desc: "Multi-step reasoning" },
@@ -150,7 +150,7 @@ function Message({ msg, muted, onSpeak }) {
 export default function App() {
   const [view, setView] = useState("chat"); const [messages, setMessages] = useState([
     { role: "system", content: "— HONUS AGENT ONLINE —" },
-    { role: "assistant", content: "Hello, darling. I'm Honus — your personal baseball AI agent. I can think, plan, search, write code, and analyse anything you throw at me.\n\nWhat do you need done?" }
+    { role: "assistant", content: "Hello there! I'm Honus — your personal baseball AI agent. I can think, plan, search, write code, and analyse anything you throw at me.\n\nWhat do you need done?" }
   ]);
   const [history, setHistory]       = useState([]);
   const [input, setInput]           = useState("");
