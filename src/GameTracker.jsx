@@ -16,7 +16,7 @@ function getBritishVoice() {
   return voices.find(v => v.lang === "en-GB") || voices.find(v => v.lang.startsWith("en")) || null;
 }
 
-async async function speak(text) {
+async function speak(text) {
   window.speechSynthesis.cancel();
   const clean = text.replace(/[*_`#>-]+/g, " ").replace(/\s+/g, " ").trim();
   try {
