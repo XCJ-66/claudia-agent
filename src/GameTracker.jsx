@@ -16,7 +16,7 @@ function getBritishVoice() {
   return voices.find(v => v.lang === "en-GB") || voices.find(v => v.lang.startsWith("en")) || null;
 }
 
-function speak(text) {
+async function speak(text) {
   window.speechSynthesis.cancel();
   const utter = new SpeechSynthesisUtterance(text);
   const voice = getBritishVoice();
@@ -24,7 +24,7 @@ function speak(text) {
   utter.lang = "en-US";
   utter.rate = 0.85;
   utter.pitch = 0.7;
-  window.speechSynthesis.speak(utter);
+  // replaced by ElevenLabs
 }
 // ─────────────────────────────────────────────────────────────────────────────
 
@@ -148,7 +148,7 @@ export default function GameTracker({ onBack }) {
     setTracking(true);
     fetchGame(url);
     intervalRef.current = setInterval(() => fetchGame(url), REFRESH_INTERVAL);
-    if (!muted) speak("Tracking started. I'll update you on the game every 30 seconds, darling.");
+    if (!muted) speak("Tracking started. I'll update you on the game every 30 seconds.");
   };
 
   const stopTracking = () => {
@@ -193,7 +193,7 @@ export default function GameTracker({ onBack }) {
     setPlays(mock.plays);
     setLastUpdated(new Date());
     setTracking(true);
-    if (!muted) speak("Demo mode active. Here's a sample game, darling.");
+    if (!muted) speak("Demo mode active. Here's a sample game.");
   };
 
   return (
