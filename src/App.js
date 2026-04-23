@@ -55,7 +55,7 @@ function TypingDots() {
       {[0, 1, 2].map(i => (
         <div key={i} style={{
           width: 7, height: 7, borderRadius: "50%",
-          background: "#00f5c4",
+          background: "#00ff44",
           animation: `bounce 1.2s ${i * 0.2}s infinite ease-in-out`,
         }} />
       ))}
@@ -95,9 +95,9 @@ function Message({ msg, muted, onSpeak }) {
       {!isUser && (
         <div style={{
           width: 32, height: 32, borderRadius: "50%", flexShrink: 0,
-          background: "linear-gradient(135deg, #00f5c4, #7b61ff)",
+          background: "linear-gradient(135deg, #00ff44, #ffdd00)",
           display: "flex", alignItems: "center", justifyContent: "center",
-          fontSize: 14, boxShadow: "0 0 10px #00f5c440",
+          fontSize: 14, boxShadow: "0 0 10px #00ff4440",
         }}>C</div>
       )}
 
@@ -105,16 +105,16 @@ function Message({ msg, muted, onSpeak }) {
         gap: 4, alignItems: isUser ? "flex-end" : "flex-start" }}>
         <div style={{
           background: isUser
-            ? "linear-gradient(135deg, #7b61ff, #a78bfa)"
+            ? "linear-gradient(135deg, #ffdd00, #ffe033)"
             : "rgba(255,255,255,0.06)",
           border: isUser ? "none" : "1px solid rgba(255,255,255,0.1)",
           borderRadius: isUser ? "18px 18px 4px 18px" : "18px 18px 18px 4px",
           padding: "12px 16px", color: "#f0f0f0", fontSize: 14, lineHeight: 1.6,
           whiteSpace: "pre-wrap", wordBreak: "break-word",
-          boxShadow: isUser ? "0 4px 15px #7b61ff40" : "none",
+          boxShadow: isUser ? "0 4px 15px #ffdd0040" : "none",
         }}>
           {!isUser && msg.tool && (
-            <div style={{ fontSize: 11, color: "#00f5c4", marginBottom: 6, fontFamily: "monospace", letterSpacing: 1 }}>
+            <div style={{ fontSize: 11, color: "#00ff44", marginBottom: 6, fontFamily: "monospace", letterSpacing: 1 }}>
               ⚡ {msg.tool.toUpperCase()} MODE
             </div>
           )}
@@ -127,7 +127,7 @@ function Message({ msg, muted, onSpeak }) {
             color: "#555", padding: "2px 4px", display: "flex", alignItems: "center", gap: 5,
             fontSize: 10, fontFamily: "Space Mono", letterSpacing: 1, transition: "color 0.2s",
           }}
-          onMouseEnter={e => e.currentTarget.style.color = "#00f5c4"}
+          onMouseEnter={e => e.currentTarget.style.color = "#00ff44"}
           onMouseLeave={e => e.currentTarget.style.color = "#555"}
           title="Read aloud">
             🔊 LISTEN
@@ -138,9 +138,9 @@ function Message({ msg, muted, onSpeak }) {
       {isUser && (
         <div style={{
           width: 32, height: 32, borderRadius: "50%", flexShrink: 0,
-          background: "rgba(123,97,255,0.3)", border: "1px solid #7b61ff",
+          background: "rgba(123,97,255,0.3)", border: "1px solid #ffdd00",
           display: "flex", alignItems: "center", justifyContent: "center",
-          fontSize: 13, color: "#c4b5fd",
+          fontSize: 13, color: "#fff0a0",
         }}>U</div>
       )}
     </div>
@@ -232,7 +232,7 @@ export default function App() {
   ];
 
   return (
-    <div style={{ minHeight: "100vh", background: "#0a0a0f", display: "flex", flexDirection: "column",
+    <div style={{ minHeight: "100vh", background: "#0a0f0a", display: "flex", flexDirection: "column",
       fontFamily: "'DM Sans', 'Segoe UI', sans-serif" }}>
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap');
@@ -257,22 +257,22 @@ export default function App() {
           {speaking && (
             <div style={{
               position: "absolute", inset: -5, borderRadius: "50%",
-              border: "2px solid #00f5c4", animation: "ripple 1.1s infinite ease-out",
+              border: "2px solid #00ff44", animation: "ripple 1.1s infinite ease-out",
             }} />
           )}
           <div style={{
             width: 36, height: 36, borderRadius: "50%",
-            background: "linear-gradient(135deg, #00f5c4, #7b61ff)",
+            background: "linear-gradient(135deg, #00ff44, #ffdd00)",
             display: "flex", alignItems: "center", justifyContent: "center",
-            fontFamily: "Space Mono", fontWeight: 700, fontSize: 13, color: "#0a0a0f",
-            boxShadow: speaking ? "0 0 24px #00f5c470" : "0 0 20px #00f5c430",
+            fontFamily: "Space Mono", fontWeight: 700, fontSize: 13, color: "#0a0f0a",
+            boxShadow: speaking ? "0 0 24px #00ff4470" : "0 0 20px #00ff4430",
             transition: "box-shadow 0.3s",
           }}>C</div>
         </div>
 
         <div>
-          <div style={{ fontFamily: "Space Mono", fontSize: 13, color: "#00f5c4", letterSpacing: 2 }}>HONUS</div>
-          <div style={{ fontSize: 11, color: speaking ? "#00f5c4" : "#555", letterSpacing: 1, transition: "color 0.3s" }}>
+          <div style={{ fontFamily: "Space Mono", fontSize: 13, color: "#00ff44", letterSpacing: 2 }}>HONUS</div>
+          <div style={{ fontSize: 11, color: speaking ? "#00ff44" : "#555", letterSpacing: 1, transition: "color 0.3s" }}>
             {speaking ? "SPEAKING..." : "YOUR PERSONAL AI AGENT"}
           </div>
         </div>
@@ -287,9 +287,9 @@ export default function App() {
           )}
           <button onClick={toggleMute} title={muted ? "Unmute" : "Mute"} style={{
             background: muted ? "rgba(255,255,255,0.04)" : "rgba(0,245,196,0.08)",
-            border: `1px solid ${muted ? "rgba(255,255,255,0.08)" : "#00f5c430"}`,
+            border: `1px solid ${muted ? "rgba(255,255,255,0.08)" : "#00ff4430"}`,
             borderRadius: 8, padding: "6px 12px", cursor: "pointer",
-            color: muted ? "#444" : "#00f5c4",
+            color: muted ? "#444" : "#00ff44",
             display: "flex", alignItems: "center", gap: 6,
             fontSize: 11, fontFamily: "Space Mono", transition: "all 0.2s",
           }}>
@@ -297,8 +297,8 @@ export default function App() {
             {muted ? "MUTED" : "VOICE ON"}
           </button>
           <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
-            <div style={{ width: 7, height: 7, borderRadius: "50%", background: "#00f5c4", animation: "pulse 2s infinite" }} />
-            <span style={{ fontSize: 11, color: "#00f5c4", fontFamily: "Space Mono" }}>ONLINE</span>           <button onClick={() => setView("game")} style={{             background: "rgba(245,158,11,0.1)", border: "1px solid #f59e0b40",             borderRadius: 8, padding: "5px 10px", cursor: "pointer",        color: "#f59e0b", fontSize: 11, fontFamily: "Space Mono",           }}>⚾ GAME</button>           <button onClick={() => setView("baseball")} style={{             background: "rgba(34,197,94,0.1)", border: "1px solid #22c55e40",             borderRadius: 8, padding: "5px 10px", cursor: "pointer",             color: "#22c55e", fontSize: 11, fontFamily: "Space Mono",           }}>🧠 BRAIN</button>           <button onClick={() => setView("gameday")} style={{             background: "rgba(34,197,94,0.1)", border: "1px solid #22c55e40",             borderRadius: 8, padding: "5px 10px", cursor: "pointer",             color: "#22c55e", fontSize: 11, fontFamily: "Space Mono",           }}>🎮 GAME DAY</button>
+            <div style={{ width: 7, height: 7, borderRadius: "50%", background: "#00ff44", animation: "pulse 2s infinite" }} />
+            <span style={{ fontSize: 11, color: "#00ff44", fontFamily: "Space Mono" }}>ONLINE</span>           <button onClick={() => setView("game")} style={{             background: "rgba(245,158,11,0.1)", border: "1px solid #ffdd0040",             borderRadius: 8, padding: "5px 10px", cursor: "pointer",        color: "#ffdd00", fontSize: 11, fontFamily: "Space Mono",           }}>⚾ GAME</button>           <button onClick={() => setView("baseball")} style={{             background: "rgba(34,197,94,0.1)", border: "1px solid #00ff4440",             borderRadius: 8, padding: "5px 10px", cursor: "pointer",             color: "#00ff44", fontSize: 11, fontFamily: "Space Mono",           }}>🧠 BRAIN</button>           <button onClick={() => setView("gameday")} style={{             background: "rgba(34,197,94,0.1)", border: "1px solid #00ff4440",             borderRadius: 8, padding: "5px 10px", cursor: "pointer",             color: "#00ff44", fontSize: 11, fontFamily: "Space Mono",           }}>🎮 GAME DAY</button>
           </div>
         </div>
       </div>
@@ -314,7 +314,7 @@ export default function App() {
           <div style={{ display: "flex", gap: 10, alignItems: "flex-end", marginBottom: 16 }}>
             <div style={{
               width: 32, height: 32, borderRadius: "50%",
-              background: "linear-gradient(135deg, #00f5c4, #7b61ff)",
+              background: "linear-gradient(135deg, #00ff44, #ffdd00)",
               display: "flex", alignItems: "center", justifyContent: "center", fontSize: 14,
             }}>C</div>
             <div style={{ background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.1)",
@@ -331,7 +331,7 @@ export default function App() {
                 borderRadius: 20, padding: "8px 14px", color: "#aaa", fontSize: 12,
                 cursor: "pointer", transition: "all 0.2s",
               }}
-              onMouseEnter={e => { e.target.style.borderColor="#00f5c4"; e.target.style.color="#00f5c4"; }}
+              onMouseEnter={e => { e.target.style.borderColor="#00ff44"; e.target.style.color="#00ff44"; }}
               onMouseLeave={e => { e.target.style.borderColor="rgba(255,255,255,0.1)"; e.target.style.color="#aaa"; }}
               >{p}</button>
             ))}
@@ -347,12 +347,12 @@ export default function App() {
           <button key={t.id} onClick={() => setActiveTool(activeTool === t.id ? null : t.id)} style={{
             flexShrink: 0,
             background: activeTool === t.id ? "rgba(0,245,196,0.15)" : "rgba(255,255,255,0.04)",
-            border: `1px solid ${activeTool === t.id ? "#00f5c4" : "rgba(255,255,255,0.08)"}`,
+            border: `1px solid ${activeTool === t.id ? "#00ff44" : "rgba(255,255,255,0.08)"}`,
             borderRadius: 10, padding: "6px 12px", cursor: "pointer",
             display: "flex", alignItems: "center", gap: 6, transition: "all 0.2s",
           }}>
             <span style={{ fontSize: 14 }}>{t.icon}</span>
-            <span style={{ fontSize: 11, color: activeTool === t.id ? "#00f5c4" : "#888", fontWeight: 500, whiteSpace: "nowrap" }}>{t.label}</span>
+            <span style={{ fontSize: 11, color: activeTool === t.id ? "#00ff44" : "#888", fontWeight: 500, whiteSpace: "nowrap" }}>{t.label}</span>
           </button>
         ))}
       </div>
@@ -361,17 +361,17 @@ export default function App() {
       <div style={{ maxWidth: 760, width: "100%", margin: "0 auto", padding: "8px 16px 20px" }}>
         <div style={{
           background: "rgba(255,255,255,0.05)",
-          border: `1px solid ${activeTool ? "#00f5c440" : "rgba(255,255,255,0.1)"}`,
+          border: `1px solid ${activeTool ? "#00ff4440" : "rgba(255,255,255,0.1)"}`,
           borderRadius: 16, padding: "12px 14px",
           display: "flex", gap: 10, alignItems: "flex-end",
           transition: "border-color 0.2s",
-          boxShadow: activeTool ? "0 0 20px #00f5c420" : "none",
+          boxShadow: activeTool ? "0 0 20px #00ff4420" : "none",
         }}>
           {activeTool && (
             <div style={{
-              fontSize: 11, color: "#00f5c4", fontFamily: "Space Mono",
-              position: "absolute", marginTop: -30, background: "#0a0a0f",
-              padding: "2px 8px", borderRadius: 6, border: "1px solid #00f5c440",
+              fontSize: 11, color: "#00ff44", fontFamily: "Space Mono",
+              position: "absolute", marginTop: -30, background: "#0a0f0a",
+              padding: "2px 8px", borderRadius: 6, border: "1px solid #00ff4440",
             }}>⚡ {TOOLS.find(t => t.id === activeTool)?.label} active</div>
           )}
           <textarea ref={textareaRef} rows={1} value={input}
@@ -394,11 +394,11 @@ export default function App() {
           <button onClick={() => send()} disabled={!input.trim() || loading} style={{
             width: 36, height: 36, borderRadius: "50%", flexShrink: 0,
             background: input.trim() && !loading
-              ? "linear-gradient(135deg, #00f5c4, #7b61ff)" : "rgba(255,255,255,0.08)",
+              ? "linear-gradient(135deg, #00ff44, #ffdd00)" : "rgba(255,255,255,0.08)",
             border: "none", cursor: input.trim() && !loading ? "pointer" : "not-allowed",
             display: "flex", alignItems: "center", justifyContent: "center",
             fontSize: 16, transition: "all 0.2s",
-            boxShadow: input.trim() && !loading ? "0 0 15px #00f5c440" : "none",
+            boxShadow: input.trim() && !loading ? "0 0 15px #00ff4440" : "none",
           }}>➤</button>
         </div>
         <div style={{ fontSize: 11, color: "#333", textAlign: "center", marginTop: 8 }}>

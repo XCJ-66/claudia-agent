@@ -74,7 +74,7 @@ When given a play update, respond in this format:
 const REFRESH_INTERVAL = 15000;
 
 function Diamond({ bases }) {
-  const active = "#f59e0b";
+  const active = "#ffdd00";
   const inactive = "rgba(255,255,255,0.08)";
   return (
     <svg width="70" height="70" viewBox="0 0 80 80">
@@ -126,7 +126,7 @@ function ScoreBoard({ homeTeam, awayTeam }) {
       <div style={{ padding: "16px 20px", textAlign: "center" }}>
         <div style={{ fontSize: 11, color: "#888", fontFamily: "Space Mono", letterSpacing: 1, marginBottom: 4 }}>HOME</div>
         <div style={{ fontFamily: "Oswald", fontSize: 18, color: "#f0f0f0", marginBottom: 4 }}>{homeTeam?.name || "HOME"}</div>
-        <div style={{ fontFamily: "Oswald", fontSize: 48, color: "#22c55e", lineHeight: 1 }}>{homeTeam?.runs ?? 0}</div>
+        <div style={{ fontFamily: "Oswald", fontSize: 48, color: "#00ff44", lineHeight: 1 }}>{homeTeam?.runs ?? 0}</div>
         <div style={{ fontSize: 11, color: "#555", marginTop: 4 }}>
           {homeTeam?.hits ?? 0}H · {homeTeam?.errors ?? 0}E
         </div>
@@ -140,7 +140,7 @@ function TypingDots() {
     <div style={{ display: "flex", gap: 5, alignItems: "center", padding: "8px 0" }}>
       {[0,1,2].map(i => (
         <div key={i} style={{
-          width: 6, height: 6, borderRadius: "50%", background: "#22c55e",
+          width: 6, height: 6, borderRadius: "50%", background: "#00ff44",
           animation: `sgbounce 1.2s ${i*0.2}s infinite ease-in-out`,
         }} />
       ))}
@@ -386,7 +386,7 @@ const quickAsks = [
 
   return (
     <div style={{
-      minHeight: "100vh", background: "#070a0e",
+      minHeight: "100vh", background: "#070e07",
       fontFamily: "'DM Sans', 'Segoe UI', sans-serif", color: "#f0f0f0",
       display: "flex", flexDirection: "column",
     }}>
@@ -404,7 +404,7 @@ const quickAsks = [
       {/* ── Header ── */}
       <div style={{
         background: "linear-gradient(135deg, #0a1628, #0a1a0a)",
-        borderBottom: "2px solid #22c55e",
+        borderBottom: "2px solid #00ff44",
         padding: "12px 16px",
         display: "flex", alignItems: "center", gap: 12,
         position: "sticky", top: 0, zIndex: 10,
@@ -419,17 +419,17 @@ const quickAsks = [
           <div style={{ position: "relative" }}>
             {speaking && <div style={{
               position: "absolute", inset: -4, borderRadius: "50%",
-              border: "2px solid #22c55e", animation: "ripple 1s infinite ease-out",
+              border: "2px solid #00ff44", animation: "ripple 1s infinite ease-out",
             }} />}
             <div style={{
               width: 34, height: 34, borderRadius: "50%",
-              background: "linear-gradient(135deg, #22c55e, #00f5c4)",
+              background: "linear-gradient(135deg, #00ff44, #00ff44)",
               display: "flex", alignItems: "center", justifyContent: "center",
-              fontFamily: "Space Mono", fontWeight: 700, fontSize: 13, color: "#0a0a0f",
+              fontFamily: "Space Mono", fontWeight: 700, fontSize: 13, color: "#0a0f0a",
             }}>C</div>
           </div>
           <div>
-            <div style={{ fontFamily: "Oswald", fontSize: 15, color: "#22c55e", letterSpacing: 2 }}>
+            <div style={{ fontFamily: "Oswald", fontSize: 15, color: "#00ff44", letterSpacing: 2 }}>
               HONUS · GAME DAY
             </div>
             <div style={{ fontSize: 10, color: "#555", fontFamily: "Space Mono" }}>
@@ -441,8 +441,8 @@ const quickAsks = [
         <div style={{ marginLeft: "auto", display: "flex", alignItems: "center", gap: 8 }}>
           {tracking && (
             <div style={{ display: "flex", alignItems: "center", gap: 5 }}>
-              <div style={{ width: 6, height: 6, borderRadius: "50%", background: "#22c55e", animation: "pulse 1.5s infinite" }} />
-              <span style={{ fontSize: 10, color: "#22c55e", fontFamily: "Space Mono" }}>LIVE</span>
+              <div style={{ width: 6, height: 6, borderRadius: "50%", background: "#00ff44", animation: "pulse 1.5s infinite" }} />
+              <span style={{ fontSize: 10, color: "#00ff44", fontFamily: "Space Mono" }}>LIVE</span>
             </div>
           )}
           {speaking && (
@@ -454,9 +454,9 @@ const quickAsks = [
           )}
           <button onClick={() => setMuted(m => !m)} style={{
             background: muted ? "rgba(255,255,255,0.04)" : "rgba(34,197,94,0.08)",
-            border: `1px solid ${muted ? "rgba(255,255,255,0.08)" : "#22c55e30"}`,
+            border: `1px solid ${muted ? "rgba(255,255,255,0.08)" : "#00ff4430"}`,
             borderRadius: 6, padding: "4px 8px", cursor: "pointer",
-            color: muted ? "#444" : "#22c55e", fontSize: 10, fontFamily: "Space Mono",
+            color: muted ? "#444" : "#00ff44", fontSize: 10, fontFamily: "Space Mono",
           }}>{muted ? "🔇" : "🔊"}</button>
         </div>
       </div>
@@ -482,9 +482,9 @@ const quickAsks = [
                 }}
               />
               <button onClick={startTracking} disabled={!inputUrl.trim()} style={{
-                background: inputUrl.trim() ? "linear-gradient(135deg, #22c55e, #16a34a)" : "rgba(255,255,255,0.06)",
+                background: inputUrl.trim() ? "linear-gradient(135deg, #00ff44, #00cc33)" : "rgba(255,255,255,0.06)",
                 border: "none", borderRadius: 8, padding: "8px 16px",
-                color: inputUrl.trim() ? "#0a0a0f" : "#555",
+                color: inputUrl.trim() ? "#0a0f0a" : "#555",
                 fontFamily: "Oswald", fontSize: 13, cursor: inputUrl.trim() ? "pointer" : "not-allowed",
               }}>TRACK</button>
               <button onClick={loadDemo} style={{
@@ -506,7 +506,7 @@ const quickAsks = [
               marginTop: 10, flexWrap: "wrap", gap: 8,
             }}>
               <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
-                <div style={{ fontFamily: "Oswald", fontSize: 16, color: "#f59e0b" }}>
+                <div style={{ fontFamily: "Oswald", fontSize: 16, color: "#ffdd00" }}>
                   {gameData.isTop ? "TOP" : "BOT"} {gameData.inning}
                 </div>
                 <div style={{ display: "flex", gap: 5, alignItems: "center" }}>
@@ -549,9 +549,9 @@ const quickAsks = [
 {gameData && (
 <div style={{ padding: "8px 16px", display: "flex", gap: 8, borderBottom: "1px solid rgba(255,255,255,0.04)" }}>
 <button onClick={downloadReport} style={{
-background: "rgba(34,197,94,0.1)", border: "1px solid #22c55e40",
+background: "rgba(34,197,94,0.1)", border: "1px solid #00ff4440",
 borderRadius: 8, padding: "7px 14px", cursor: "pointer",
-color: "#22c55e", fontSize: 11, fontFamily: "Space Mono",
+color: "#00ff44", fontSize: 11, fontFamily: "Space Mono",
 }}>📊 DOWNLOAD REPORT</button>
 <button onClick={emailReport} style={{
 background: "rgba(96,165,250,0.1)", border: "1px solid #60a5fa40",
@@ -567,13 +567,13 @@ color: "#60a5fa", fontSize: 11, fontFamily: "Space Mono",
           {quickAsks.map(q => (
             <button key={q} onClick={() => { setChatInput(q); }} style={{
               flexShrink: 0, background: "rgba(34,197,94,0.06)",
-              border: "1px solid #22c55e20", borderRadius: 16,
+              border: "1px solid #00ff4420", borderRadius: 16,
               padding: "5px 12px", cursor: "pointer",
-              color: "#22c55e80", fontSize: 11, whiteSpace: "nowrap",
+              color: "#00ff4480", fontSize: 11, whiteSpace: "nowrap",
               transition: "all 0.2s",
             }}
-            onMouseEnter={e => { e.currentTarget.style.background="rgba(34,197,94,0.12)"; e.currentTarget.style.color="#22c55e"; }}
-            onMouseLeave={e => { e.currentTarget.style.background="rgba(34,197,94,0.06)"; e.currentTarget.style.color="#22c55e80"; }}
+            onMouseEnter={e => { e.currentTarget.style.background="rgba(34,197,94,0.12)"; e.currentTarget.style.color="#00ff44"; }}
+            onMouseLeave={e => { e.currentTarget.style.background="rgba(34,197,94,0.06)"; e.currentTarget.style.color="#00ff4480"; }}
             >{q}</button>
           ))}
         </div>
@@ -584,13 +584,13 @@ color: "#60a5fa", fontSize: 11, fontFamily: "Space Mono",
             <div key={i} style={{ marginBottom: 12, animation: "fadeUp 0.3s ease" }}>
               {item.type === "play" && (
                 <div style={{
-                  background: "rgba(245,158,11,0.08)", border: "1px solid #f59e0b20",
+                  background: "rgba(245,158,11,0.08)", border: "1px solid #ffdd0020",
                   borderRadius: 8, padding: "8px 12px",
                   display: "flex", alignItems: "center", gap: 8,
                 }}>
                   <span style={{ fontSize: 16 }}>⚾</span>
                   <div>
-                    <div style={{ fontSize: 13, color: "#f59e0b", fontWeight: 500 }}>{item.text}</div>
+                    <div style={{ fontSize: 13, color: "#ffdd00", fontWeight: 500 }}>{item.text}</div>
                     {item.time && <div style={{ fontSize: 10, color: "#555", fontFamily: "Space Mono" }}>{item.time}</div>}
                   </div>
                 </div>
@@ -599,9 +599,9 @@ color: "#60a5fa", fontSize: 11, fontFamily: "Space Mono",
                 <div style={{ display: "flex", gap: 8, alignItems: "flex-start" }}>
                   <div style={{
                     width: 28, height: 28, borderRadius: "50%", flexShrink: 0,
-                    background: "linear-gradient(135deg, #22c55e, #00f5c4)",
+                    background: "linear-gradient(135deg, #00ff44, #00ff44)",
                     display: "flex", alignItems: "center", justifyContent: "center",
-                    fontFamily: "Space Mono", fontWeight: 700, fontSize: 11, color: "#0a0a0f",
+                    fontFamily: "Space Mono", fontWeight: 700, fontSize: 11, color: "#0a0f0a",
                   }}>C</div>
                   <div style={{
                     background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.08)",
@@ -613,7 +613,7 @@ color: "#60a5fa", fontSize: 11, fontFamily: "Space Mono",
                       background: "none", border: "none", cursor: "pointer",
                       color: "#444", fontSize: 10, marginLeft: 8, transition: "color 0.2s",
                     }}
-                    onMouseEnter={e => e.currentTarget.style.color="#22c55e"}
+                    onMouseEnter={e => e.currentTarget.style.color="#00ff44"}
                     onMouseLeave={e => e.currentTarget.style.color="#444"}
                     >🔊</button>
                   </div>
@@ -622,10 +622,10 @@ color: "#60a5fa", fontSize: 11, fontFamily: "Space Mono",
               {item.type === "user" && (
                 <div style={{ display: "flex", justifyContent: "flex-end" }}>
                   <div style={{
-                    background: "linear-gradient(135deg, #15803d, #22c55e)",
+                    background: "linear-gradient(135deg, #009922, #00ff44)",
                     borderRadius: "14px 14px 4px 14px", padding: "10px 14px",
                     fontSize: 14, lineHeight: 1.6, color: "#f0f0f0", maxWidth: "80%",
-                    boxShadow: "0 4px 12px #22c55e20",
+                    boxShadow: "0 4px 12px #00ff4420",
                   }}>{item.text}</div>
                 </div>
               )}
@@ -635,9 +635,9 @@ color: "#60a5fa", fontSize: 11, fontFamily: "Space Mono",
             <div style={{ display: "flex", gap: 8, alignItems: "flex-start" }}>
               <div style={{
                 width: 28, height: 28, borderRadius: "50%",
-                background: "linear-gradient(135deg, #22c55e, #00f5c4)",
+                background: "linear-gradient(135deg, #00ff44, #00ff44)",
                 display: "flex", alignItems: "center", justifyContent: "center",
-                fontFamily: "Space Mono", fontWeight: 700, fontSize: 11, color: "#0a0a0f",
+                fontFamily: "Space Mono", fontWeight: 700, fontSize: 11, color: "#0a0f0a",
               }}>C</div>
               <div style={{
                 background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.08)",
@@ -674,7 +674,7 @@ color: "#60a5fa", fontSize: 11, fontFamily: "Space Mono",
             <button onClick={sendChat} disabled={!chatInput.trim() || chatLoading} style={{
               width: 32, height: 32, borderRadius: "50%", flexShrink: 0,
               background: chatInput.trim() && !chatLoading
-                ? "linear-gradient(135deg, #22c55e, #16a34a)" : "rgba(255,255,255,0.06)",
+                ? "linear-gradient(135deg, #00ff44, #00cc33)" : "rgba(255,255,255,0.06)",
               border: "none", cursor: chatInput.trim() && !chatLoading ? "pointer" : "not-allowed",
               display: "flex", alignItems: "center", justifyContent: "center",
               fontSize: 14, transition: "all 0.2s",

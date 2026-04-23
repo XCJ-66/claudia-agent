@@ -28,7 +28,7 @@ const REFRESH_INTERVAL = 15000; // 30 seconds
 
 function Diamond({ bases }) {
   // bases = { first, second, third }
-  const active = "#f59e0b";
+  const active = "#ffdd00";
   const inactive = "rgba(255,255,255,0.1)";
   return (
     <svg width="80" height="80" viewBox="0 0 80 80">
@@ -64,7 +64,7 @@ function InningScoreboard({ innings, homeTeam, awayTeam }) {
             {displayInnings.map((_, i) => (
               <th key={i} style={{ padding: "6px 10px", color: "#888", fontWeight: 400, textAlign: "center", minWidth: 32 }}>{i + 1}</th>
             ))}
-            <th style={{ padding: "6px 10px", color: "#f59e0b", fontWeight: 700, textAlign: "center" }}>R</th>
+            <th style={{ padding: "6px 10px", color: "#ffdd00", fontWeight: 700, textAlign: "center" }}>R</th>
             <th style={{ padding: "6px 10px", color: "#888", fontWeight: 400, textAlign: "center" }}>H</th>
             <th style={{ padding: "6px 10px", color: "#888", fontWeight: 400, textAlign: "center" }}>E</th>
           </tr>
@@ -78,7 +78,7 @@ function InningScoreboard({ innings, homeTeam, awayTeam }) {
                   {team?.innings?.[i] ?? "-"}
                 </td>
               ))}
-              <td style={{ padding: "8px 10px", textAlign: "center", color: "#f59e0b", fontWeight: 700, fontSize: 15 }}>{team?.runs ?? 0}</td>
+              <td style={{ padding: "8px 10px", textAlign: "center", color: "#ffdd00", fontWeight: 700, fontSize: 15 }}>{team?.runs ?? 0}</td>
               <td style={{ padding: "8px 10px", textAlign: "center", color: "#ccc" }}>{team?.hits ?? 0}</td>
               <td style={{ padding: "8px 10px", textAlign: "center", color: "#ef4444" }}>{team?.errors ?? 0}</td>
             </tr>
@@ -194,7 +194,7 @@ export default function GameTracker({ onBack }) {
 
   return (
     <div style={{
-      minHeight: "100vh", background: "#08090f",
+      minHeight: "100vh", background: "#080f08",
       fontFamily: "'DM Sans', 'Segoe UI', sans-serif",
       color: "#f0f0f0",
     }}>
@@ -210,7 +210,7 @@ export default function GameTracker({ onBack }) {
       {/* Header */}
       <div style={{
         background: "linear-gradient(135deg, #0f1923 0%, #1a0a0a 100%)",
-        borderBottom: "2px solid #f59e0b",
+        borderBottom: "2px solid #ffdd00",
         padding: "14px 20px",
         display: "flex", alignItems: "center", gap: 12,
         position: "sticky", top: 0, zIndex: 10,
@@ -223,7 +223,7 @@ export default function GameTracker({ onBack }) {
         <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
           <span style={{ fontSize: 22 }}>⚾</span>
           <div>
-            <div style={{ fontFamily: "Oswald", fontSize: 16, color: "#f59e0b", letterSpacing: 2 }}>HONUS GAME TRACKER</div>
+            <div style={{ fontFamily: "Oswald", fontSize: 16, color: "#ffdd00", letterSpacing: 2 }}>HONUS GAME TRACKER</div>
             <div style={{ fontSize: 10, color: "#555", letterSpacing: 1, fontFamily: "Space Mono" }}>LIVE LITTLE LEAGUE STATS</div>
           </div>
         </div>
@@ -231,15 +231,15 @@ export default function GameTracker({ onBack }) {
         <div style={{ marginLeft: "auto", display: "flex", alignItems: "center", gap: 10 }}>
           {tracking && (
             <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
-              <div style={{ width: 7, height: 7, borderRadius: "50%", background: "#22c55e", animation: "pulse 1.5s infinite" }} />
-              <span style={{ fontSize: 11, color: "#22c55e", fontFamily: "Space Mono" }}>LIVE</span>
+              <div style={{ width: 7, height: 7, borderRadius: "50%", background: "#00ff44", animation: "pulse 1.5s infinite" }} />
+              <span style={{ fontSize: 11, color: "#00ff44", fontFamily: "Space Mono" }}>LIVE</span>
             </div>
           )}
           <button onClick={() => setMuted(m => !m)} style={{
             background: muted ? "rgba(255,255,255,0.04)" : "rgba(245,158,11,0.1)",
-            border: `1px solid ${muted ? "rgba(255,255,255,0.08)" : "#f59e0b50"}`,
+            border: `1px solid ${muted ? "rgba(255,255,255,0.08)" : "#ffdd0050"}`,
             borderRadius: 8, padding: "5px 10px", cursor: "pointer",
-            color: muted ? "#555" : "#f59e0b", fontSize: 11, fontFamily: "Space Mono",
+            color: muted ? "#555" : "#ffdd00", fontSize: 11, fontFamily: "Space Mono",
           }}>
             {muted ? "🔇 MUTED" : "🔊 VOICE"}
           </button>
@@ -254,7 +254,7 @@ export default function GameTracker({ onBack }) {
             background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.08)",
             borderRadius: 16, padding: 24, marginBottom: 20,
           }}>
-            <div style={{ fontFamily: "Oswald", fontSize: 18, color: "#f59e0b", marginBottom: 6 }}>
+            <div style={{ fontFamily: "Oswald", fontSize: 18, color: "#ffdd00", marginBottom: 6 }}>
               ENTER GAMECHANGER URL
             </div>
             <div style={{ fontSize: 13, color: "#666", marginBottom: 16 }}>
@@ -273,9 +273,9 @@ export default function GameTracker({ onBack }) {
                 }}
               />
               <button onClick={startTracking} disabled={!inputUrl.trim()} style={{
-                background: inputUrl.trim() ? "linear-gradient(135deg, #f59e0b, #d97706)" : "rgba(255,255,255,0.06)",
+                background: inputUrl.trim() ? "linear-gradient(135deg, #ffdd00, #ccaa00)" : "rgba(255,255,255,0.06)",
                 border: "none", borderRadius: 10, padding: "10px 20px",
-                color: inputUrl.trim() ? "#0a0a0f" : "#555",
+                color: inputUrl.trim() ? "#0a0f0a" : "#555",
                 fontFamily: "Oswald", fontSize: 14, letterSpacing: 1,
                 cursor: inputUrl.trim() ? "pointer" : "not-allowed",
               }}>TRACK GAME</button>
@@ -315,13 +315,13 @@ export default function GameTracker({ onBack }) {
 
             {/* Status bar */}
             <div style={{
-              background: "rgba(245,158,11,0.08)", border: "1px solid #f59e0b30",
+              background: "rgba(245,158,11,0.08)", border: "1px solid #ffdd0030",
               borderRadius: 12, padding: "12px 16px",
               display: "flex", alignItems: "center", justifyContent: "space-between",
               flexWrap: "wrap", gap: 10,
             }}>
               <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
-                <div style={{ fontFamily: "Oswald", fontSize: 20, color: "#f59e0b" }}>
+                <div style={{ fontFamily: "Oswald", fontSize: 20, color: "#ffdd00" }}>
                   {gameData.isTop ? "TOP" : "BOT"} {gameData.inning || "-"}
                 </div>
                 <div style={{ display: "flex", gap: 6 }}>
@@ -345,7 +345,7 @@ export default function GameTracker({ onBack }) {
                   </div>
                 )}
                 {tracking && (
-                  <div style={{ fontSize: 11, color: "#22c55e", fontFamily: "Space Mono" }}>
+                  <div style={{ fontSize: 11, color: "#00ff44", fontFamily: "Space Mono" }}>
                     Next refresh in 30s
                   </div>
                 )}
@@ -360,7 +360,7 @@ export default function GameTracker({ onBack }) {
               <div style={{
                 padding: "10px 16px", background: "rgba(245,158,11,0.08)",
                 borderBottom: "1px solid rgba(255,255,255,0.06)",
-                fontFamily: "Oswald", fontSize: 13, color: "#f59e0b", letterSpacing: 2,
+                fontFamily: "Oswald", fontSize: 13, color: "#ffdd00", letterSpacing: 2,
               }}>SCOREBOARD</div>
               <div style={{ padding: "8px 0" }}>
                 <InningScoreboard
@@ -406,7 +406,7 @@ export default function GameTracker({ onBack }) {
                 <div style={{
                   padding: "10px 16px", background: "rgba(245,158,11,0.08)",
                   borderBottom: "1px solid rgba(255,255,255,0.06)",
-                  fontFamily: "Oswald", fontSize: 13, color: "#f59e0b", letterSpacing: 2,
+                  fontFamily: "Oswald", fontSize: 13, color: "#ffdd00", letterSpacing: 2,
                 }}>PLAY BY PLAY</div>
                 <div style={{ maxHeight: 280, overflowY: "auto" }}>
                   {[...plays].reverse().map((play, i) => (

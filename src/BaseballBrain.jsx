@@ -112,10 +112,10 @@ function StatCard({ name, stats }) {
     }}>
       <div style={{ fontFamily: "Oswald", fontSize: 14, color: "#f0f0f0", marginBottom: 6 }}>{name}</div>
       <div style={{ display: "flex", gap: 12, fontSize: 11, color: "#888" }}>
-        <div><span style={{ color: "#f59e0b", fontWeight: 700 }}>{avg}</span><br/>AVG</div>
+        <div><span style={{ color: "#ffdd00", fontWeight: 700 }}>{avg}</span><br/>AVG</div>
         <div><span style={{ color: "#60a5fa", fontWeight: 700 }}>{stats.hits}/{stats.ab}</span><br/>H/AB</div>
         {stats.k > 0 && <div><span style={{ color: "#ef4444", fontWeight: 700 }}>{stats.k}</span><br/>K</div>}
-        {stats.bb > 0 && <div><span style={{ color: "#22c55e", fontWeight: 700 }}>{stats.bb}</span><br/>BB</div>}
+        {stats.bb > 0 && <div><span style={{ color: "#00ff44", fontWeight: 700 }}>{stats.bb}</span><br/>BB</div>}
       </div>
     </div>
   );
@@ -126,7 +126,7 @@ function TypingDots() {
     <div style={{ display: "flex", gap: 5, alignItems: "center", padding: "10px 0" }}>
       {[0,1,2].map(i => (
         <div key={i} style={{
-          width: 7, height: 7, borderRadius: "50%", background: "#f59e0b",
+          width: 7, height: 7, borderRadius: "50%", background: "#ffdd00",
           animation: `bbounce 1.2s ${i*0.2}s infinite ease-in-out`,
         }} />
       ))}
@@ -212,7 +212,7 @@ export default function BaseballBrain({ onBack }) {
       {/* Header */}
       <div style={{
         background: "linear-gradient(135deg, #0a1628 0%, #0f1a0a 100%)",
-        borderBottom: "2px solid #22c55e",
+        borderBottom: "2px solid #00ff44",
         padding: "14px 20px",
         display: "flex", alignItems: "center", gap: 12,
         position: "sticky", top: 0, zIndex: 10,
@@ -225,7 +225,7 @@ export default function BaseballBrain({ onBack }) {
         <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
           <span style={{ fontSize: 24 }}>🧠⚾</span>
           <div>
-            <div style={{ fontFamily: "Oswald", fontSize: 16, color: "#22c55e", letterSpacing: 2 }}>HONUS'S BASEBALL BRAIN</div>
+            <div style={{ fontFamily: "Oswald", fontSize: 16, color: "#00ff44", letterSpacing: 2 }}>HONUS'S BASEBALL BRAIN</div>
             <div style={{ fontSize: 10, color: "#555", letterSpacing: 1, fontFamily: "Space Mono" }}>LIVE COACHING ASSISTANT</div>
           </div>
         </div>
@@ -233,9 +233,9 @@ export default function BaseballBrain({ onBack }) {
         <div style={{ marginLeft: "auto", display: "flex", alignItems: "center", gap: 10 }}>
           <button onClick={() => setMuted(m => !m)} style={{
             background: muted ? "rgba(255,255,255,0.04)" : "rgba(34,197,94,0.1)",
-            border: `1px solid ${muted ? "rgba(255,255,255,0.08)" : "#22c55e50"}`,
+            border: `1px solid ${muted ? "rgba(255,255,255,0.08)" : "#00ff4450"}`,
             borderRadius: 8, padding: "5px 10px", cursor: "pointer",
-            color: muted ? "#555" : "#22c55e", fontSize: 11, fontFamily: "Space Mono",
+            color: muted ? "#555" : "#00ff44", fontSize: 11, fontFamily: "Space Mono",
           }}>{muted ? "🔇 MUTED" : "🔊 VOICE"}</button>
         </div>
       </div>
@@ -252,8 +252,8 @@ export default function BaseballBrain({ onBack }) {
         ].map(t => (
           <button key={t.id} onClick={() => setTab(t.id)} style={{
             padding: "10px 20px", background: "none", border: "none", cursor: "pointer",
-            color: tab === t.id ? "#22c55e" : "#666", fontSize: 13,
-            borderBottom: tab === t.id ? "2px solid #22c55e" : "2px solid transparent",
+            color: tab === t.id ? "#00ff44" : "#666", fontSize: 13,
+            borderBottom: tab === t.id ? "2px solid #00ff44" : "2px solid transparent",
             fontFamily: "Space Mono", transition: "all 0.2s",
           }}>{t.label}</button>
         ))}
@@ -275,7 +275,7 @@ export default function BaseballBrain({ onBack }) {
             </div>
           ) : (
             <div>
-              <div style={{ fontFamily: "Oswald", fontSize: 14, color: "#22c55e", letterSpacing: 2, marginBottom: 16 }}>
+              <div style={{ fontFamily: "Oswald", fontSize: 14, color: "#00ff44", letterSpacing: 2, marginBottom: 16 }}>
                 TRACKED PLAYERS
               </div>
               <div style={{ display: "flex", flexWrap: "wrap", gap: 10 }}>
@@ -307,7 +307,7 @@ export default function BaseballBrain({ onBack }) {
                 color: "#888", fontSize: 11, display: "flex", alignItems: "center", gap: 5,
                 transition: "all 0.2s", whiteSpace: "nowrap",
               }}
-              onMouseEnter={e => { e.currentTarget.style.borderColor="#22c55e"; e.currentTarget.style.color="#22c55e"; }}
+              onMouseEnter={e => { e.currentTarget.style.borderColor="#00ff44"; e.currentTarget.style.color="#00ff44"; }}
               onMouseLeave={e => { e.currentTarget.style.borderColor="rgba(255,255,255,0.08)"; e.currentTarget.style.color="#888"; }}
               >{q.icon} {q.label}</button>
             ))}
@@ -329,19 +329,19 @@ export default function BaseballBrain({ onBack }) {
                   {!isUser && (
                     <div style={{
                       width: 32, height: 32, borderRadius: "50%", flexShrink: 0,
-                      background: "linear-gradient(135deg, #22c55e, #16a34a)",
+                      background: "linear-gradient(135deg, #00ff44, #00cc33)",
                       display: "flex", alignItems: "center", justifyContent: "center", fontSize: 16,
                     }}>⚾</div>
                   )}
                   <div style={{ maxWidth: "75%", display: "flex", flexDirection: "column", gap: 4,
                     alignItems: isUser ? "flex-end" : "flex-start" }}>
                     <div style={{
-                      background: isUser ? "linear-gradient(135deg, #15803d, #22c55e)" : "rgba(255,255,255,0.05)",
+                      background: isUser ? "linear-gradient(135deg, #009922, #00ff44)" : "rgba(255,255,255,0.05)",
                       border: isUser ? "none" : "1px solid rgba(255,255,255,0.08)",
                       borderRadius: isUser ? "18px 18px 4px 18px" : "18px 18px 18px 4px",
                       padding: "10px 14px", color: "#f0f0f0", fontSize: 14, lineHeight: 1.6,
                       whiteSpace: "pre-wrap", wordBreak: "break-word",
-                      boxShadow: isUser ? "0 4px 15px #22c55e30" : "none",
+                      boxShadow: isUser ? "0 4px 15px #00ff4430" : "none",
                     }}>{msg.content}</div>
                     {!isUser && (
                       <button onClick={() => speak(msg.content)} style={{
@@ -349,7 +349,7 @@ export default function BaseballBrain({ onBack }) {
                         color: "#555", fontSize: 10, fontFamily: "Space Mono",
                         padding: "2px 4px", transition: "color 0.2s",
                       }}
-                      onMouseEnter={e => e.currentTarget.style.color="#22c55e"}
+                      onMouseEnter={e => e.currentTarget.style.color="#00ff44"}
                       onMouseLeave={e => e.currentTarget.style.color="#555"}
                       >🔊 LISTEN</button>
                     )}
@@ -357,9 +357,9 @@ export default function BaseballBrain({ onBack }) {
                   {isUser && (
                     <div style={{
                       width: 32, height: 32, borderRadius: "50%", flexShrink: 0,
-                      background: "rgba(34,197,94,0.2)", border: "1px solid #22c55e50",
+                      background: "rgba(34,197,94,0.2)", border: "1px solid #00ff4450",
                       display: "flex", alignItems: "center", justifyContent: "center",
-                      fontSize: 13, color: "#22c55e",
+                      fontSize: 13, color: "#00ff44",
                     }}>🧢</div>
                   )}
                 </div>
@@ -369,7 +369,7 @@ export default function BaseballBrain({ onBack }) {
               <div style={{ display: "flex", gap: 10, alignItems: "flex-end", marginBottom: 14 }}>
                 <div style={{
                   width: 32, height: 32, borderRadius: "50%",
-                  background: "linear-gradient(135deg, #22c55e, #16a34a)",
+                  background: "linear-gradient(135deg, #00ff44, #00cc33)",
                   display: "flex", alignItems: "center", justifyContent: "center", fontSize: 16,
                 }}>⚾</div>
                 <div style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.08)",
@@ -391,12 +391,12 @@ export default function BaseballBrain({ onBack }) {
                 "We're down by 2, last inning — strategy?",
               ].map(s => (
                 <button key={s} onClick={() => send(s)} style={{
-                  background: "rgba(34,197,94,0.06)", border: "1px solid #22c55e20",
+                  background: "rgba(34,197,94,0.06)", border: "1px solid #00ff4420",
                   borderRadius: 6, padding: "4px 10px", cursor: "pointer",
-                  color: "#22c55e90", fontSize: 11, transition: "all 0.2s",
+                  color: "#00ff4490", fontSize: 11, transition: "all 0.2s",
                 }}
-                onMouseEnter={e => { e.currentTarget.style.background="rgba(34,197,94,0.12)"; e.currentTarget.style.color="#22c55e"; }}
-                onMouseLeave={e => { e.currentTarget.style.background="rgba(34,197,94,0.06)"; e.currentTarget.style.color="#22c55e90"; }}
+                onMouseEnter={e => { e.currentTarget.style.background="rgba(34,197,94,0.12)"; e.currentTarget.style.color="#00ff44"; }}
+                onMouseLeave={e => { e.currentTarget.style.background="rgba(34,197,94,0.06)"; e.currentTarget.style.color="#00ff4490"; }}
                 >{s}</button>
               ))}
             </div>
@@ -425,7 +425,7 @@ export default function BaseballBrain({ onBack }) {
               <button onClick={() => send()} disabled={!input.trim() || loading} style={{
                 width: 36, height: 36, borderRadius: "50%", flexShrink: 0,
                 background: input.trim() && !loading
-                  ? "linear-gradient(135deg, #22c55e, #16a34a)" : "rgba(255,255,255,0.06)",
+                  ? "linear-gradient(135deg, #00ff44, #00cc33)" : "rgba(255,255,255,0.06)",
                 border: "none", cursor: input.trim() && !loading ? "pointer" : "not-allowed",
                 display: "flex", alignItems: "center", justifyContent: "center",
                 fontSize: 16, transition: "all 0.2s",
