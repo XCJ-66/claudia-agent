@@ -13,7 +13,7 @@ async function speak(text, onStart, onEnd) {
     if (!res.ok) throw new Error("TTS failed");
     const blob = await res.blob();
     const url  = URL.createObjectURL(blob);
-    const audio = document.getElementById("honus-audio") || Object.assign(document.createElement("audio"), {id: "honus-audio"});document.body.contains(audio) || document.body.appendChild(audio);audio.src = url;const _dummy = new Audio();
+    const audio = document.getElementById("honus-audio") || Object.assign(document.createElement("audio"), {id: "honus-audio"});document.body.contains(audio) || document.body.appendChild(audio);audio.src = url
     audio.volume = 1.0;
     if (onStart) audio.onplay = onStart;
     if (onEnd) audio.onended = onEnd;
