@@ -148,9 +148,9 @@ function TypingDots() {
   );
 }
 
-export default function SuperGameDay({ onBack }) {
-  const [gcUrl, setGcUrl]           = useState("");
-  const [inputUrl, setInputUrl]     = useState("");
+export default function SuperGameDay({ onBack, savedUrl, onSaveUrl }) {
+  const [gcUrl, setGcUrl]           = useState(savedUrl || "");
+  const [inputUrl, setInputUrl]     = useState(savedUrl || "");
   const [gameData, setGameData]     = useState(null);
   const [tracking, setTracking]     = useState(false);
   const [loading, setLoading]       = useState(false);
@@ -263,6 +263,7 @@ Announce this play and give instant coaching advice!`;
     if (!inputUrl.trim()) return;
     const url = inputUrl.trim();
     setGcUrl(url);
+    if (onSaveUrl) onSaveUrl(url);
     setTracking(true);
     setLastPlayCount(0);
     fetchGame(url);

@@ -148,7 +148,8 @@ function Message({ msg, muted, onSpeak }) {
 }
 
 export default function App() {
-  const [view, setView] = useState("chat"); const [messages, setMessages] = useState([
+  const [view, setView] = useState("chat");
+  const [gcUrl, setGcUrl] = useState(""); const [messages, setMessages] = useState([
     { role: "system", content: "— HONUS AGENT ONLINE —" },
     { role: "assistant", content: "Hello there! I'm Honus — your personal baseball AI agent. I can think, plan, search, write code, and analyse anything you throw at me.\n\nWhat do you need done?" }
   ]);
@@ -222,7 +223,7 @@ export default function App() {
 
   if (view === "game") return <GameTracker onBack={() => setView("chat")} />;
   if (view === "baseball") return <BaseballBrain onBack={() => setView("chat")} />;
-  if (view === "gameday") return <SuperGameDay onBack={() => setView("chat")} />;
+  if (view === "gameday") return <SuperGameDay onBack={() => setView("chat")} savedUrl={gcUrl} onSaveUrl={setGcUrl} />;
 
   const quickPrompts = [
     "Plan my day productively",
