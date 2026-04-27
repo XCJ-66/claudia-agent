@@ -121,7 +121,7 @@ Make it enthusiastic and useful for a little league coach!`;
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "Authorization": `Bearer ${process.env.RESEND_API_KEY}`,
+        "Authorization": `Bearer ${"re_7cUuD24U_LKqhTfBGgyPY3X7nHaPUbT5i"}`,
       },
       body: JSON.stringify({
         from: "Honus <onboarding@resend.dev>",
