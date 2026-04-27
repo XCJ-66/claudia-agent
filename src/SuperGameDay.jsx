@@ -363,21 +363,29 @@ a.download = "Honus_Game_Report.csv";
 a.click();
 };
   const emailReport = async () => {
-const res = await fetch("/api/email-report", {
-method: "POST",
-headers: { "Content-Type": "application/json" },
-body: JSON.stringify({
-gameData, plays: gameData?.plays || [],
-email: "jcx7816@gmail.com",
-teamName: gameData?.homeTeam?.name,
-opponentName: gameData?.awayTeam?.name,
-gameDate: new Date().toLocaleDateString(),
-}),
-});
-const data = await res.json();
-const mailto = `mailto:jcx7816@gmail.com?subject=${encodeURIComponent(data.subject)}&body=${encodeURIComponent(data.emailBody)}`;
-window.open(mailto);
-};
+    try {
+      const res = await fetch("/api/email-report", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          gameData,
+          plays: gameData?.plays || [],
+          email: "jcx7816@gmail.com",
+          teamName: gameData?.homeTeam?.name,
+          opponentName: gameData?.awayTeam?.name,
+          gameDate: new Date().toLocaleDateString(),
+        }),
+      });
+      const data = await res.json();
+      if (data.success) {
+        alert("Email sent to jcx7816@gmail.com!");
+      } else {
+        alert("Error: " + (data.error || "Unknown error"));
+      }
+    } catch (err) {
+      alert("Failed to send email: " + err.message);
+    }
+  };
 const quickAsks = [
     "Should I steal with runner on first?",
     "Pitching change advice?",
