@@ -149,10 +149,11 @@ function TypingDots() {
 }
 
 export default function SuperGameDay({ onBack, savedUrl, onSaveUrl }) {
-  const [gcUrl, setGcUrl]           = useState(savedUrl || "");
-  const [inputUrl, setInputUrl]     = useState(savedUrl || "");
+  const [gcUrl, setGcUrl]           = useState(() => savedUrl || localStorage.getItem("honus_gc_url") || "");
+  const [inputUrl, setInputUrl]     = useState(() => savedUrl || localStorage.getItem("honus_gc_url") || "");
   const [gameData, setGameData]     = useState(null);
   const [tracking, setTracking]     = useState(false);
+  const [autoStarted, setAutoStarted] = useState(false);
   const [loading, setLoading]       = useState(false);
   const [analyzing, setAnalyzing]   = useState(false);
   const [error, setError]           = useState("");
@@ -264,6 +265,7 @@ Announce this play and give instant coaching advice!`;
     const url = inputUrl.trim();
     setGcUrl(url);
     if (onSaveUrl) onSaveUrl(url);
+    localStorage.setItem("honus_gc_url", url);
     setTracking(true);
     setLastPlayCount(0);
     fetchGame(url);
@@ -343,6 +345,19 @@ Announce this play and give instant coaching advice!`;
   };
 
   useEffect(() => () => clearInterval(intervalRef.current), []);
+
+  // Auto-resume tracking if URL saved in localStorage
+  useEffect(() => {
+    const savedGcUrl = localStorage.getItem("honus_gc_url");
+    if (savedGcUrl && !autoStarted && !tracking) {
+      setAutoStarted(true);
+      setInputUrl(savedGcUrl);
+      setGcUrl(savedGcUrl);
+      setTracking(true);
+      fetchGame(savedGcUrl);
+      intervalRef.current = setInterval(() => fetchGame(savedGcUrl), 15000);
+    }
+  }, []);
 
   const downloadReport = async () => {
 const res = await fetch("/api/game-report", {
