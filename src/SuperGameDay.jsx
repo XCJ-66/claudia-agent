@@ -175,7 +175,7 @@ export default function SuperGameDay({ onBack, savedUrl, onSaveUrl }) {
     load();
     window.speechSynthesis.addEventListener("voiceschanged", load);
     return () => window.speechSynthesis.removeEventListener("voiceschanged", load);
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
     feedBottomRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -357,7 +357,7 @@ Announce this play and give instant coaching advice!`;
       fetchGame(savedGcUrl);
       intervalRef.current = setInterval(() => fetchGame(savedGcUrl), 15000);
     }
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const downloadReport = async () => {
 const res = await fetch("/api/game-report", {
