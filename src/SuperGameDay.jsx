@@ -158,7 +158,7 @@ export default function SuperGameDay({ onBack, savedUrl, onSaveUrl }) {
   const [analyzing, setAnalyzing]   = useState(false);
   const [error, setError]           = useState("");
   const [lastUpdated, setLastUpdated] = useState(null);
-  const [muted, setMuted]           = useState(false);
+  const [muted, setMuted]           = useState(true);
   const [speaking, setSpeaking]     = useState(false);
   const [honusFeed, setHonusFeed] = useState([
     { type: "honus", text: "Right then! Paste your GameChanger URL and I'll watch the game for you, darling. I'll announce every play and give you tactical advice in real time! ⚾" }

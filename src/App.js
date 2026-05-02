@@ -157,7 +157,7 @@ export default function App() {
   const [input, setInput]           = useState("");
   const [loading, setLoading]       = useState(false);
   const [activeTool, setActiveTool] = useState(null);
-  const [muted, setMuted]           = useState(false);
+  const [muted, setMuted]           = useState(true);
   const [speaking, setSpeaking]     = useState(false);
   const bottomRef   = useRef(null);
   const textareaRef = useRef(null);
